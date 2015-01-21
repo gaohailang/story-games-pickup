@@ -196,7 +196,9 @@
       &.share{background-image: url(../images/wolf/bg.jpg) ;background-position: center center;background-repeat: no-repeat;background-size: cover;}
       .pic{height: 85%}
       &.section_1{
-        .pic_1{background-image: url(../images/wolf/1.jpg) ;width: 100%;float: left;}
+        .pic_1{
+          background-image: url(../images/wolf/1.jpg) ;width: 100%;float: left;
+          height: 70%;}
       }
       &.section_2{
         .pic_1{background-image: url(../images/wolf/2_1.jpg) ;width: 58%;float: left;}
@@ -222,7 +224,14 @@
       &.share{background-image: url(../images/thief/bg.jpg) ;background-position: center center;background-repeat: no-repeat;background-size: cover;}
       .pic{height: 85%;}
       &.section_1{
-        .pic_1{background-image: url(../images/thief/1.jpg) ;width: 100%;float: left;}
+        .pic_1{
+          background-image: url(../images/thief/1.jpg) ;
+          width: 100%;
+          float: left;
+
+          height: 130%;
+          margin-top: -120px;
+        }
       }
       &.section_2{
         background-color: #38323d;

@@ -15,28 +15,29 @@ function install(id, evt) {
         _pushGaEvent('install_ios', i.appAlias);
         // P4
     } else if (campaignTools.inWdj()) {
-        $(evt.target).html('安装中');
+        var $btns = $(evt.target).parents('.game').find('.js-install-btn');
+        $btns.html('安装中');
         campaignTools.installApp(i.packageName);
         var timer = setInterval(function() {
             if (campaignTools.isInstalled(i.packageName)) {
                 clearInterval(timer);
                 // Todo: btn annotate with open/install
-                $(evt.target).addClass('js-installed');
-                $(evt.target).html('打开');
+                $btns.addClass('js-installed');
+                $btns.html('打开');
             }
         }, 5000);
         _pushGaEvent('install_p4', i.appAlias);
         // android + wechat
     } else if (campaignTools.inAndroid() && campaignTools.inWechat()) {
-        window.open('http://www.wandoujia.com/apps/' + i.packageName);
+        location.href = 'http://www.wandoujia.com/apps/' + i.packageName;
         _pushGaEvent('install_android_wechat', i.appAlias);
         // android
     } else if (campaignTools.inAndroid()) {
-        window.open('http://www.wandoujia.com/apps/' + packageName + '/binding');
+        location.href = 'http://www.wandoujia.com/apps/' + packageName + '/binding';
         _pushGaEvent('install_android', i.appAlias);
         // other
     } else {
-        window.open('http://www.wandoujia.com/apps/' + packageName + '/binding');
+        location.href = 'http://www.wandoujia.com/apps/' + packageName + '/binding';
         _pushGaEvent('install_other', i.appAlias);
     }
 }
@@ -46,6 +47,6 @@ function openApp(id, evt) {
         packageName: AppPackageNameArr[id],
         appAlias: GAMENAMEARR[id]
     };
-    campaignTools.openAppDetail(i.packageName);
+    campaignTools.openApp(i.packageName);
     _pushGaEvent('open_p4', i.appAlias);
 }

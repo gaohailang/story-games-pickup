@@ -14,7 +14,8 @@ function noop() {
 var _campaignTools = {
     openAppDetail: noop,
     installApp: noop,
-    isInstalled: noop
+    isInstalled: noop,
+    openApp: noop
 };
 $.extend(_campaignTools, window.campaignTools);
 window.campaignTools = _campaignTools;
@@ -407,6 +408,8 @@ window.campaignTools = _campaignTools;
             checkOrientation();
         });
 
+        // Todo: support parse page-num from url hash
+
         $.each($('.game'), function(idx, i) {
             var $thiz = $(i);
             $thiz.find('.js-install-btn').data('id', idx);
@@ -423,6 +426,7 @@ window.campaignTools = _campaignTools;
             var isInstalled = $thiz.hasClass('js-installed');
             var id = $thiz.data('id');
             if (!isInstalled) {
+                if ($thiz.html() === '安装中') return;
                 install(id, e);
             } else {
                 openApp(id, e);

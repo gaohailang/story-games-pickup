@@ -1,89 +1,44 @@
-function install(argument) {
-    // body...
-    if (bodu.device.iOS && bodu.device.isWechat) {
-        e.preventDefault();
+function install(url) {
+    // event?!
+    // gameID - > packageName, appstoreUrl, appAlias
+    // _pushGaEvent
+    var i = {
+        packageName: AppPackageNameArr[id],
+        appAlias: GAMENAMEARR[id],
+        appstoreUrl: AppStoreUrlArr[id]
+    };
+
+    if (campaignTools.iniOS && campaignTools.inWechat) {
         // 微信里会屏蔽 appstore 的链接 所以这里需要做一个跳转
-        window.open('http://mp.weixin.qq.com/mp/redirect?url= ' + encodeURIComponent(url));
-        bodu.trackEvent({
-            category: goodgames,
-            action: 'install_ios_wechat',
-            label: 'deemo'
-        });
+        window.open('http://mp.weixin.qq.com/mp/redirect?url= ' + encodeURIComponent(i.appstoreUrl));
+        _pushGaEvent('install_ios_wechat', i.appAlias);
         // iOS
-    } else if (bodu.device.iOS) {
-        e.preventDefault();
-        window.open(url);
-        bodu.trackEvent({
-            category: goodgames,
-            action: 'install_ios',
-            label: 'deemo'
-        });
+    } else if (campaignTools.iniOS) {
+        window.open(appstoreUrl);
+        _pushGaEvent('install_ios', i.appAlias);
         // P4
-    } else if (bodu.device.isP4) {
-        e.preventDefault();
-        $t.find('span').html('安装中');
-        bodu.install(packageName, downloadUrl, title, icon, bytes);
+    } else if (campaignTools.inWdj) {
+        $(evt.target).html('安装中');
+        campaignTools.installApp(i.packageName);
         var timer = setInterval(function() {
-            if (bodu.isInstalled(packageName)) {
+            if (campaignTools.isInstalled(i.packageName)) {
                 clearInterval(timer);
-                $t.hide().after('<a href=" " class="button open"><i></i><span>打开<span></a >');
+                // Todo: btn annotate with open/install
+                $(evt.target).html('打开');
             }
         }, 5000);
-        bodu.trackEvent({
-            category: goodgames,
-            action: 'install_p4',
-            label: 'deemo'
-        });
-
+        _pushGaEvent('install_p4', i.appAlias);
         // android + wechat
-    } else if (bodu.device.isAndroid && bodu.device.isWechat) {
-        e.preventDefault();
-        window.open('http://www.wandoujia.com/apps/' + packageName);
-        bodu.trackEvent({
-            category: goodgames,
-            action: 'install_android_wechat',
-            label: 'deemo'
-        });
-
+    } else if (campaignTools.inAndroid && campaignTools.inWechat) {
+        window.open('http://www.wandoujia.com/apps/' + i.packageName);
+        _pushGaEvent('install_android_wechat', i.appAlias);
         // android
-    } else if (bodu.device.isAndroid) {
-        e.preventDefault();
+    } else if (campaignTools.inAndroid) {
         window.open('http://www.wandoujia.com/apps/' + packageName + '/binding');
-
-        bodu.trackEvent({
-            category: goodgames,
-            action: 'install_android',
-            label: 'deemo'
-        });
-
-        // mac
-    } else if (bodu.device.isMac) {
-        e.preventDefault();
-        window.open('http://www.wandoujia.com/apps/' + packageName + '/binding');
-        bodu.trackEvent({
-            category: goodgames,
-            action: 'install_mac',
-            label: 'deemo'
-        });
-
-        // win
-    } else if (bodu.device.isWin) {
-        e.preventDefault();
-        window.open('http://www.wandoujia.com/apps/' + packageName + '/binding');
-        bodu.trackEvent({
-            category: goodgames,
-            action: 'install_win',
-            label: 'deemo'
-        });
-
+        _pushGaEvent('install_android', i.appAlias);
         // other
     } else {
-        e.preventDefault();
         window.open('http://www.wandoujia.com/apps/' + packageName + '/binding');
-        bodu.trackEvent({
-            category: goodgames,
-            action: 'install_other',
-            label: 'demo'
-        });
+        _pushGaEvent('install_other', i.appAlias);
     }
-}
+};

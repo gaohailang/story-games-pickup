@@ -1,8 +1,17 @@
+window.GAMENAMEARR = ['deemo', 'twau', 'tt'];
+window.AppPackageNameArr = ['com.rayark.pluto', 'com.telltalegames.fables100', 'com.roviostars.tinythief.wdj'];
+window.AppStoreUrlArr = ['https://itunes.apple.com/cn/app/deemo/id700637744?mt=8&ign-mpt=uo%3D2', 'https://itunes.apple.com/cn/app/the-wolf-among-us/id716238885?mt=8', 'https://itunes.apple.com/cn/app/tiny-thief/id656620224?mt=8'];
 (function() {
     'use strict';
     var active_page = 1;
     var hasSeenCover = false;
     var $win = $(window);
+
+    // curry pushGaEvent with 'goodgames'
+    window._pushGaEvent = function(action, label, value) {
+        console.log('GA ' + JSON.stringify(arguments));
+        return campaignTools.pushGaEvent('goodgames', action, label, value);
+    };
 
     function action(item, state, callback) {
         var _this = $(item);
@@ -386,54 +395,27 @@
             checkOrientation();
         });
 
-        $('.link_game_1').click(function(event) {
-            $('.game_1').show().css({
+        // game contents page link
+        $('.main_menu .item .btn').click(function(e) {
+            var gameId = $(this).attr('class').replace('btn', '').replace('link_', '');
+
+            var id = +gameId.replace('game_', '');
+            _pushGaEvent('choose_game', GAMENAMEARR[id - 1]);
+
+            $('.' + gameId).show().css({
                 opacity: 1
-            })
-            $('.game_1 .section_1').css({
+            }).find('.section_1').css({
                 opacity: 1
-            }).show()
-            $('.game_1 .section_1 .line').css({
+            }).show().find('.line').css({
                 opacity: 1
-            })
+            });
             $('.next').css({
                 opacity: 1
             });
             action('.main_menu', 'out');
             active_page = 2;
         });
-        $('.link_game_2').click(function(event) {
-            $('.game_2').show().css({
-                opacity: 1
-            })
-            $('.game_2 .section_1').css({
-                opacity: 1
-            }).show()
-            $('.game_2 .section_1 .line').css({
-                opacity: 1
-            })
-            $('.next').css({
-                opacity: 1
-            });
-            action('.main_menu', 'out');
-            active_page = 2;
-        });
-        $('.link_game_3').click(function(event) {
-            $('.game_3').show().css({
-                opacity: 1
-            })
-            $('.game_3 .section_1').css({
-                opacity: 1
-            }).show()
-            $('.game_3 .section_1 .line').css({
-                opacity: 1
-            })
-            $('.next').css({
-                opacity: 1
-            });
-            action('.main_menu', 'out');
-            active_page = 2;
-        });
+
         $('.first .next').click(function() {
             action('.main_menu', 'in', function() {
                 $('.first .next').children().transition({

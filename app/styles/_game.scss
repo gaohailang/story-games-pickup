@@ -59,12 +59,11 @@
       background-color: rgba(0,0,0,1);
       color: #fff;
       p{
-        display: inline-block;
-        float: left;
-        font-size: 4vh;
+        font-size: 15px;
         margin-top: 7px;
-        line-height: 1.6;
+        line-height: 1.5;
         margin-right: 70px;
+        padding: 0 20px;
       }
       &.top{top: 0;height:15%;display: none;}
       .btn{

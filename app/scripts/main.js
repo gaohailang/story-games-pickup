@@ -7,6 +7,11 @@
     function action(item, state, callback) {
         var _this = $(item);
         _this.show();
+        if (item !== '.main_menu') {
+            $('.game .next').css({
+                opacity: 1
+            });
+        }
         if (item === '.first') {
             if (state === 'in') {
                 _this.children('.next').transition({
@@ -60,6 +65,9 @@
                 }, 1000, 'easeOutSine');
             }
         } else if (item === '.main_menu') {
+            $('.first .next').css({
+                opacity: 0
+            });
             if (state === 'in') {
                 _this.show();
                 _this.children('.item_1').css({
@@ -341,6 +349,9 @@
 
     function checkOrientation(argument) {
         function hideLandscapeWarn() {
+            $('.main').children().not('.landscape').css({
+                zIndex: 'initial'
+            });
             $('.landscape').hide();
             if (!hasSeenCover) {
                 init(function() {
@@ -349,13 +360,21 @@
                 });
             }
         }
-        if ($win.height() > $win.width()) {
+
+        function showLandscapeWarn() {
+            $('.main').children().not('.landscape').css({
+                zIndex: -10
+            });
             $('.landscape').show();
+        }
+
+        if ($win.height() > $win.width()) {
+            showLandscapeWarn();
         } else {
             hideLandscapeWarn();
         }
         if (window.orientation === 0 || window.orientation === 180) {
-            $('.landscape').show();
+            showLandscapeWarn();
         } else if (window.orientation === 90 || window.orientation === -90) {
             hideLandscapeWarn();
         }

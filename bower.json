@@ -1,0 +1,10 @@
+{
+  "name": "face",
+  "private": true,
+  "dependencies": {
+    "jquery": "~1.11.1",
+    "jquery.transit": "~0.9.12",
+    "underscore": "~1.7.0",
+    "PreloadJS": "~0.6.0"
+  }
+}

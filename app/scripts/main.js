@@ -1,17 +1,29 @@
 window.GAMENAMEARR = ['deemo', 'twau', 'tt'];
 window.AppPackageNameArr = ['com.rayark.pluto', 'com.telltalegames.fables100', 'com.roviostars.tinythief.wdj'];
 window.AppStoreUrlArr = ['https://itunes.apple.com/cn/app/deemo/id700637744?mt=8&ign-mpt=uo%3D2', 'https://itunes.apple.com/cn/app/the-wolf-among-us/id716238885?mt=8', 'https://itunes.apple.com/cn/app/tiny-thief/id656620224?mt=8'];
+// curry pushGaEvent with 'goodgames'
+window._pushGaEvent = function(action, label, value) {
+    console.log('GA ' + JSON.stringify(arguments));
+    return campaignTools.pushGaEvent('goodgames', action, label, value);
+};
+
+function noop() {
+
+}
+
+var _campaignTools = {
+    openAppDetail: noop,
+    installApp: noop,
+    isInstalled: noop
+};
+$.extend(_campaignTools, window.campaignTools);
+window.campaignTools = _campaignTools;
+
 (function() {
     'use strict';
     var active_page = 1;
     var hasSeenCover = false;
     var $win = $(window);
-
-    // curry pushGaEvent with 'goodgames'
-    window._pushGaEvent = function(action, label, value) {
-        console.log('GA ' + JSON.stringify(arguments));
-        return campaignTools.pushGaEvent('goodgames', action, label, value);
-    };
 
     function action(item, state, callback) {
         var _this = $(item);
@@ -394,6 +406,28 @@ window.AppStoreUrlArr = ['https://itunes.apple.com/cn/app/deemo/id700637744?mt=8
         $(window).bind('orientationchange', function(e) {
             checkOrientation();
         });
+
+        $.each($('.game'), function(idx, i) {
+            var $thiz = $(i);
+            $thiz.find('.js-install-btn').data('id', idx);
+            // check isInstalled
+            if (campaignTools.isInstalled(AppPackageNameArr[idx])) {
+                $thiz.find('.js-install-btn').html('打开').addClass('js-installed');
+            }
+        });
+
+        $('.js-install-btn').click(appLinkHandler);
+
+        function appLinkHandler(e) {
+            var $thiz = $(e.target);
+            var isInstalled = $thiz.hasClass('js-installed');
+            var id = $thiz.data('id');
+            if (!isInstalled) {
+                install(id, e);
+            } else {
+                openApp(id, e);
+            }
+        }
 
         // game contents page link
         $('.main_menu .item .btn').click(function(e) {

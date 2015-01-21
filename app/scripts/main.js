@@ -1,12 +1,18 @@
 (function() {
     'use strict';
     var active_page = 1;
+    var hasSeenCover = false;
+    var $win = $(window);
 
     function action(item, state, callback) {
         var _this = $(item);
         _this.show();
-        if (item === '.first .container') {
+        if (item === '.first') {
             if (state === 'in') {
+                _this.children('.next').transition({
+                    opacity: 1
+                });
+                _this = _this.find('.container');
                 _this.children('.item_2').css({
                     opacity: 0,
                     scale: 0
@@ -51,13 +57,7 @@
                 }).transition({
                     opacity: 1,
                     delay: 2400
-                }, 1000, 'easeOutSine', function() {
-                    /*action('.main_menu', 'in', function() {
-                        _this.children().transition({
-                            opacity: 0
-                        });
-                    });*/
-                });
+                }, 1000, 'easeOutSine');
             }
         } else if (item === '.main_menu') {
             if (state === 'in') {
@@ -340,11 +340,24 @@
     }
 
     function checkOrientation(argument) {
+        function hideLandscapeWarn() {
+            $('.landscape').hide();
+            if (!hasSeenCover) {
+                init(function() {
+                    action('.first', 'in');
+                    hasSeenCover = true;
+                });
+            }
+        }
+        if ($win.height() > $win.width()) {
+            $('.landscape').show();
+        } else {
+            hideLandscapeWarn();
+        }
         if (window.orientation === 0 || window.orientation === 180) {
             $('.landscape').show();
         } else if (window.orientation === 90 || window.orientation === -90) {
-            $('.landscape').hide();
-            action('.main_menu', 'in');
+            hideLandscapeWarn();
         }
     }
 
@@ -352,11 +365,6 @@
         checkOrientation();
         $(window).bind('orientationchange', function(e) {
             checkOrientation();
-        });
-        // $('.item').css({opacity:1})
-        // action('.main_menu','in');
-        init(function() {
-            action('.first .container', 'in');
         });
 
         $('.link_game_1').click(function(event) {
@@ -407,8 +415,16 @@
             action('.main_menu', 'out');
             active_page = 2;
         });
+        $('.first .next').click(function() {
+            action('.main_menu', 'in', function() {
+                $('.first .next').children().transition({
+                    opacity: 0
+                }, 1000, 'easeOutSine');
+            });
+        });
         $('.next').click(function(event) {
             var father = $(this).parent().attr("class").slice(5);
+            if (!father) return;
             action('.' + father + ' .section_' + (active_page++), 'in');
         });
         $('.prev').click(function(event) {

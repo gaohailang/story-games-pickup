@@ -19,12 +19,13 @@ var _campaignTools = {
 };
 $.extend(_campaignTools, window.campaignTools);
 window.campaignTools = _campaignTools;
+window.canShared = false;
 
+var $win = $(window);
 (function() {
     'use strict';
     var active_page = 1;
     var hasSeenCover = false;
-    var $win = $(window);
 
     function action(item, state, callback) {
         var _this = $(item);
@@ -34,8 +35,14 @@ window.campaignTools = _campaignTools;
                 opacity: 1
             });
         }
+        canShared = false;
+
+        function flagShared() {
+            canShared = true;
+        }
         if (item === '.first') {
             if (state === 'in') {
+                $win.trigger('page:changed', -1);
                 _this.children('.next').transition({
                     opacity: 1
                 });
@@ -91,6 +98,7 @@ window.campaignTools = _campaignTools;
                 opacity: 0
             });
             if (state === 'in') {
+                $win.trigger('page:changed', -2);
                 _this.show();
                 _this.children('.item_1').css({
                     opacity: 0
@@ -223,7 +231,7 @@ window.campaignTools = _campaignTools;
             if (state === 'in') {
                 _this.transition({
                     opacity: 1
-                }, 1000);
+                }, 1000, flagShared);
                 $('.next').css({
                     opacity: 0
                 });
@@ -288,7 +296,7 @@ window.campaignTools = _campaignTools;
             if (state === 'in') {
                 _this.transition({
                     opacity: 1
-                }, 1000);
+                }, 1000, flagShared);
                 $('.next').css({
                     opacity: 0
                 });
@@ -350,7 +358,7 @@ window.campaignTools = _campaignTools;
             if (state === 'in') {
                 _this.transition({
                     opacity: 1
-                }, 1000);
+                }, 1000, flagShared);
                 $('.next').css({
                     opacity: 0
                 });
@@ -439,6 +447,7 @@ window.campaignTools = _campaignTools;
 
             var id = +gameId.replace('game_', '');
             _pushGaEvent('choose_game', GAMENAMEARR[id - 1]);
+            $win.trigger('page:changed', [id - 1]);
 
             $('.' + gameId).show().css({
                 opacity: 1

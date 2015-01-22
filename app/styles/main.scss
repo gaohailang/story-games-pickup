@@ -43,6 +43,91 @@ html,body{
     }
 }
 
+.dialog-wrap {
+    text-shadow: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 0 0;
+    background: rgba(0,0,0,.7);
+    z-index: 99999;
+
+    display: none;
+}
+
+.dialog-wrap .dialog {
+    width: 100%;
+    height: 100%;
+    text-align: center
+}
+
+.dialog-wrap .dialog-inner {
+    max-width: 100%;
+    background: #000;
+    margin: 0 auto
+}
+
+.dialog-wrap .dialog-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    background: #333;
+    color: #fff;
+    font-size: 18px;
+    line-height: 40px;
+    text-align: center;
+    z-index: 2;
+    cursor: pointer
+}
+
+.wechat-share-wrap .dialog-close {
+    top: 100px;
+}
+
+.wechat-share-wrap .dialog-inner {
+    max-width: 280px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 10px;
+    font-size: 12px;
+    background: #fff
+}
+
+.wechat-share-wrap .arrow-wechat {
+    display: inline-block;
+    vertical-align: middle;
+    *vertical-align: auto;
+    *zoom:1;*display: inline;
+    background-image: url('http://static.wdjimg.com/www/images/campaign/2015singer/1x-s71bbf521b0.png');
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    height: 48px;
+    overflow: hidden;
+    width: 145px;
+    float: right;
+    margin-right: 20px
+}
+
+@media (-webkit-min-device-pixel-ratio:2),(-o-min-device-pixel-ratio:3 / 2),(min-device-pixel-ratio:2) {
+    .wechat-share-wrap .arrow-wechat {
+        background-image: url('http://static.wdjimg.com/www/images/campaign/2015singer/2x-sac581b667f.png');
+        background-position: 0 0;
+        background-size: 146.5px 262.5px;
+        height: 48.5px;
+        width: 146.5px
+    }
+}
+
+.wechat-share-wrap p {
+    padding-top: 10px;
+    clear: both
+}
+
 .wx-fake-img {
   position: absolute;
   top: -1000px;

@@ -60,7 +60,12 @@ window.ShareImgUrl = [ShareImgBaseUrl + 'deemo.png', , ShareImgBaseUrl + 'twau.p
 
     function wxInvokeShareTip(e) {
         // build html and inject to body with close handler
+        $('.wechat-share-wrap').show();
     }
+
+    $('.dialog-close').click(function() {
+        $('.wechat-share-wrap').hide();
+    });
 
     function initShareHandler() {
         var _weiboHandler = webWeiboHandler;

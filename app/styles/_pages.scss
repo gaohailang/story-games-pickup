@@ -28,13 +28,20 @@
     top: 10%;
     color: #fff;
     text-align: center;
-    h1{font-size: 8vh;margin-bottom: 2vh;}
-    h2{font-size: 4vh;margin-top: 2vh;margin-bottom: 8vh;}
+    h1{
+      font-size: 28px;
+      margin-bottom: 7px;
+    }
+    h2{
+      font-size: 16px;
+      margin-top: 7px;
+      margin-bottom: 28px;
+    }
     hr{width: 40%;margin: 0 auto;}
     p{
-      font-size: 4vh;
+      font-size: 14px;
       color: $grey;
-      text-shadow: 1px 1px 1px rgba(0, 0, 0, .5);
+      // text-shadow: 1px 1px 1px rgba(0, 0, 0, .5);
       text-align: left;
     }
     .item_4, .item_5 {
@@ -76,14 +83,16 @@
     float: left;
     text-align: center;
 
-    h3{font-size: 16px;
+    h3{
+      font-size: 22px;
       text-align: center;
       margin-top: 48px;
       font-weight: normal;
-      margin-bottom: 0;}
+      margin-bottom: 0;
+    }
     p{
       color: $grey;
-      font-size: 4vh;
+      font-size: 12px;
       text-align: left;
       padding: 10px 0;
       display: inline-block;

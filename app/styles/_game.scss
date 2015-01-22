@@ -76,7 +76,7 @@
         width: 50px;
         text-align: center;
         border-radius: 4px;
-        font-size: 4vh;
+        font-size: 14px;
         float: right;
         i{color: #fff;}
       }
@@ -90,10 +90,10 @@
         float: left;
         width: 25%;
         padding-left: 10%;
-        .icon{margin: 0 auto;display: block;width: 40%;}
-        h2{text-align: center;font-weight: normal;font-size: 4.5vh;}
+        .icon{margin: 0 auto;display: block;width: 48%;}
+        h2{text-align: center;font-weight: normal;font-size: 17px;}
         p{
-          font-size: 3vh;
+          font-size: 11px;
           text-align: center;
         }
         .logo{
@@ -101,7 +101,7 @@
           display: block;
           margin: 10px auto;
         }
-        p{font-size: 4vh;}
+        p{font-size: 12px;}
         .btn{
           background-color: #3baf29;
           width: 50%;
@@ -123,11 +123,12 @@
           margin-top: 20px;
         }
         p{
-          font-size: 3.5vh;
+          font-size: 13px;
           line-height: 1.8;
         }
       }
       .share_block{
+        z-index: 9999;
         width: 10%;
         float: right;
         vertical-align: middle;
@@ -148,23 +149,6 @@
         }
         .weibo {
           background-position: 0 -130px;
-        }
-      }
-      .btns{
-        position: absolute;
-        width: 90%;
-        margin-left: 5%;
-        bottom: 20px;
-        .btn{
-          border: 1px solid #fff;
-          padding: 5px 5px;
-          width: 80px;
-          margin: 20px auto;
-          text-align: center;
-          border-radius: 8px;
-          font-size: 3vh;
-          color: #fff;
-          i{color: #fff;}
         }
       }
     }

@@ -11,7 +11,7 @@ window.ShareImgUrl = [ShareImgBaseUrl + 'deemo.png', , ShareImgBaseUrl + 'twau.p
     $shareWrap = $('.share_block');
     var currentGameId = 0;
     var shareData = {};
-    var path = window.location.protocol + "//" + window.location.host + "/" + window.location.pathname;
+    var path = window.location.protocol + "//" + window.location.host + window.location.pathname;
     // hide weixin-friend, wx-timeline when outside of wx, p4
     // at p4 check weixin/weibo installed, use native
     // at wx, using popup tip?!

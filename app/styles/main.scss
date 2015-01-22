@@ -43,5 +43,12 @@ html,body{
     }
 }
 
+.wx-fake-img {
+  position: absolute;
+  top: -1000px;
+  left: -1000px;
+  opacity: 0;
+}
+
 @import "pages";
 @import "game";

@@ -38,7 +38,9 @@ var $win = $(window);
         canShared = false;
 
         function flagShared() {
-            canShared = true;
+            setTimeout(function() {
+                canShared = true;
+            }, 2000);
         }
         if (item === '.first') {
             if (state === 'in') {

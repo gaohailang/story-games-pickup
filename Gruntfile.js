@@ -31,8 +31,7 @@ module.exports = function(grunt) {
         // Watches files for changes and runs tasks based on the changed files
         watch: {
             bower: {
-                files: ['bower.json'],
-                tasks: ['wiredep']
+                files: ['bower.json']
             },
             js: {
                 files: ['<%= config.app %>/scripts/{,*/}*.js'],
@@ -190,18 +189,6 @@ module.exports = function(grunt) {
             }
         },
 
-        // Automatically inject Bower components into the HTML file
-        wiredep: {
-            app: {
-                ignorePath: /^\/|\.\.\//,
-                src: ['<%= config.app %>/index.html']
-            },
-            sass: {
-                src: ['<%= config.app %>/styles/{,*/}*.{scss,sass}'],
-                ignorePath: /(\.\.\/){1,2}bower_components\//
-            }
-        },
-
         // Renames files for browser caching purposes
         rev: {
             dist: {
@@ -222,14 +209,16 @@ module.exports = function(grunt) {
         // additional tasks can operate on them
         useminPrepare: {
             options: {
-                dest: '<%= config.dist %>'
+                dest: 'dist',
+                root: 'app'
             },
-            html: '<%= config.app %>/index.html'
+            html: ['dist/index.html']
         },
 
         // Performs rewrites based on rev and the useminPrepare configuration
         usemin: {
             options: {
+                dirs: ['dist'],
                 assetsDirs: [
                     '<%= config.dist %>',
                     '<%= config.dist %>/images',
@@ -298,16 +287,16 @@ module.exports = function(grunt) {
         //     }
         //   }
         // },
-        uglify: {
-            dist: {
-                files: [{
-                    expand: true,
-                    cwd: '<%= config.app %>/', //js目录下
-                    src: '**/*.js', //所有js文件
-                    dest: '<%= config.dist%>/' //输出到此目录下
-                }]
-            }
-        },
+        // uglify: {
+        //     dist: {
+        //         files: [{
+        //             expand: true,
+        //             cwd: '<%= config.app %>/', //js目录下
+        //             src: '**/*.js', //所有js文件
+        //             dest: '<%= config.dist%>/' //输出到此目录下
+        //         }]
+        //     }
+        // },
         // concat: {
         //   dist: {}
         // },
@@ -323,7 +312,7 @@ module.exports = function(grunt) {
                     src: [
                         '*.{ico,png,txt}',
                         'images/{,*/}*.{png,jpg,jpeg,mp4}',
-                        '{,*/}*.html',
+                        '!{,*/}*.html',
                         'styles/fonts/{,*/}*.*'
                     ]
                 }, {
@@ -337,6 +326,20 @@ module.exports = function(grunt) {
                 cwd: '<%= config.app %>/styles',
                 dest: '.tmp/styles/',
                 src: '!{,*/}*.scss'
+            },
+            index: {
+                files: {
+                    'dist/index.html': 'app/index.html'
+                }
+            }
+        },
+        filerev: {
+            assets: {
+                src: [
+                    'dist/**/*',
+                    '!dist/index.html'
+                ],
+                filter: 'isFile'
             }
         },
 
@@ -369,7 +372,6 @@ module.exports = function(grunt) {
 
         grunt.task.run([
             'clean:server',
-            'wiredep',
             'concurrent:server',
             'autoprefixer',
             'connect:livereload',
@@ -399,22 +401,31 @@ module.exports = function(grunt) {
 
     grunt.registerTask('build', [
         'clean:dist',
-        'wiredep',
-        'useminPrepare',
         'concurrent:dist',
+        'copy:index',
         'autoprefixer',
+        'useminPrepare',
         'concat',
         'cssmin',
         'uglify',
-        'copy:dist',
-        'rev',
+        'filerev',
         'usemin',
-        'htmlmin'
+        'htmlmin',
+        'copy:dist'
     ]);
 
     grunt.registerTask('default', [
         'newer:jshint',
         'test',
         'build'
+    ]);
+
+    grunt.registerTask('build:staging', [
+        'build'
+    ]);
+
+    grunt.registerTask('build:production', [
+        'build'
+        // add aws_s3 upload
     ]);
 };

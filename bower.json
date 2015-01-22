@@ -3,6 +3,6 @@
     "private": true,
     "dependencies": {
         "jquery": "~1.11.1",
-        "jquery.transit": "~0.9.12",
+        "jquery.transit": "~0.9.12"
     }
 }

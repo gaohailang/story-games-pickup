@@ -1,3 +1,24 @@
+// Detect CSS mask support and hack it into Modernizr
+window.isCSSMaskSupport = false;
+if (document.body.style['-webkit-mask'] !== undefined) {
+    if (detectUC()) {
+        $('html').addClass('no-cssmasks');
+    } else {
+        window.isCSSMaskSupport = true;
+    }
+} else {
+    $('html').addClass('no-cssmasks');
+}
+
+function detectUC() {
+    if (navigator && navigator.userAgent) {
+        if (navigator.userAgent.indexOf('UCB')) {
+            return true;
+        }
+    }
+    return false;
+}
+
 window.GAMENAMEARR = ['deemo', 'twau', 'tt'];
 window.AppPackageNameArr = ['com.rayark.pluto', 'com.telltalegames.fables100', 'com.roviostars.tinythief.wdj'];
 window.AppStoreUrlArr = ['https://itunes.apple.com/cn/app/deemo/id700637744?mt=8&ign-mpt=uo%3D2', 'https://itunes.apple.com/cn/app/the-wolf-among-us/id716238885?mt=8', 'https://itunes.apple.com/cn/app/tiny-thief/id656620224?mt=8'];
@@ -288,11 +309,20 @@ var $win = $(window);
                 _this.css({
                     opacity: 1
                 });
-                _this.css({
-                    '-webkit-mask-size': '1%'
-                }).transition({
-                    '-webkit-mask-size': "130%"
-                }, 1000, 'easeInQuart');
+                if (isCSSMaskSupport) {
+                    _this.css({
+                        '-webkit-mask-size': '1%'
+                    }).transition({
+                        '-webkit-mask-size': "130%"
+                    }, 1000, 'easeInQuart');
+                } else {
+                    _this.children('.pic_1').css({
+                        scale: 0.5
+                    }).transition({
+                        scale: 1,
+                        opacity: 1
+                    }, 1000, 'easeOutCubic');
+                }
             }
         } else if (item === '.game_2 .section_6') {
             if (state === 'in') {
@@ -326,11 +356,20 @@ var $win = $(window);
                 _this.css({
                     opacity: 1
                 });
-                _this.css({
-                    '-webkit-mask-size': '1%'
-                }).transition({
-                    '-webkit-mask-size': "130%"
-                }, 1000, 'easeInQuart');
+                if (isCSSMaskSupport) {
+                    _this.css({
+                        '-webkit-mask-size': '1%'
+                    }).transition({
+                        '-webkit-mask-size': "130%"
+                    }, 1000, 'easeInQuart');
+                } else {
+                    _this.children('.pic_1').css({
+                        scale: 0.5
+                    }).transition({
+                        scale: 1,
+                        opacity: 1
+                    }, 1000, 'easeOutCubic');
+                }
             }
         } else if (item === '.game_3 .section_4') {
             if (state === 'in') {

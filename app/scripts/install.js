@@ -16,7 +16,7 @@ function install(id, evt) {
         // P4
     } else if (campaignTools.inWdj()) {
         var $btns = $(evt.target).parents('.game').find('.js-install-btn');
-        $btns.html('安装中');
+        $btns.addClass('js-downloading');
         campaignTools.installApp(i.packageName);
         var timer = setInterval(function() {
             if (campaignTools.isInstalled(i.packageName)) {

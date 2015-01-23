@@ -33,6 +33,7 @@ function noop() {
 }
 
 var _campaignTools = {
+    toast: noop,
     openAppDetail: noop,
     installApp: noop,
     isInstalled: noop,
@@ -477,7 +478,10 @@ var $win = $(window);
             var isInstalled = $thiz.hasClass('js-installed');
             var id = $thiz.data('id');
             if (!isInstalled) {
-                if ($thiz.html() === '安装中') return;
+                if ($thiz.hasClass('js-downloading')) {
+                    campaignTools.toast('已经在下载中');
+                    return;
+                }
                 install(id, e);
             } else {
                 openApp(id, e);

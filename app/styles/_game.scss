@@ -60,7 +60,7 @@
       color: #fff;
       p{
         // font-size: 15px;
-        font-size: 4vh;
+        font-size: 5vh;
         // margin-top: 7px;
         margin-top: 2vh;
         line-height: 1.5;
@@ -76,8 +76,7 @@
         top: 50%;
         margin-top: -11px;
         border: 1px solid #fff;
-        padding: 3px 5px;
-        width: 50px;
+        padding: 5px 10px;
         text-align: center;
         border-radius: 4px;
         // font-size: 14px;
@@ -88,7 +87,7 @@
     }
     &.share{
       background: rgba(0,0,0,0.3);
-      box-shadow: inset 0px 0px 100px rgba(0,0,0,1);
+      // box-shadow: inset 0px 0px 100px rgba(0,0,0,1);
       .icon_block{
         border-right: 1px solid #bfbfbf;
         padding: 7% 5%;

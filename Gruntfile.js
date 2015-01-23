@@ -231,6 +231,9 @@ module.exports = function(grunt) {
 
         // The following *-min tasks produce minified files in the dist folder
         imagemin: {
+            options: {
+                optimizationLevel: 3
+            },
             dist: {
                 files: [{
                     expand: true,
@@ -347,6 +350,7 @@ module.exports = function(grunt) {
         concurrent: {
             server: [
                 'sass:server',
+                'imagemin',
                 'copy:styles'
             ],
             test: [
@@ -355,7 +359,7 @@ module.exports = function(grunt) {
             dist: [
                 'sass',
                 'copy:styles',
-                // 'imagemin',
+                'imagemin',
                 'svgmin'
             ]
         }

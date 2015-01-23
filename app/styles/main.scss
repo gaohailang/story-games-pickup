@@ -15,7 +15,9 @@ html,body{
 }
 .main{
   @include full;
-  background: url(../images/bg.jpg) center / cover;
+  background: url(../images/bg.jpg);
+  background-position: center center ;
+  background-size: cover;
 }
 
 // hack big word bug on mobile

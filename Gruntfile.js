@@ -7,7 +7,8 @@
 // 'test/spec/{,*/}*.js'
 // If you want to recursively match all subfolders, use:
 // 'test/spec/**/*.js'
-
+var grunt = require('grunt');
+var AWS_CONFIG = grunt.file.readJSON('OathKeeper/frontend/aws.json');
 module.exports = function(grunt) {
 
     // Time how long tasks take. Can help when optimizing build times
@@ -362,6 +363,71 @@ module.exports = function(grunt) {
                 'imagemin',
                 'svgmin'
             ]
+        },
+        replace: {
+            deploy: {
+                options: {
+                    patterns: [{
+                        match: /src=\.\/scripts/g,
+                        replacement: 'src=http://static.wdjimg.com/campaign-goodgames/scripts'
+                    }, {
+                        match: /href=\.\/styles/g,
+                        replacement: 'href=http://static.wdjimg.com/campaign-goodgames/styles'
+                    }, {
+                        match: /url\(\.\.\/images/g,
+                        replacement: 'url(http://static.wdjimg.com/campaign-goodgames/images'
+                    }, {
+                        match: /src=images/g,
+                        replacement: 'src=http://static.wdjimg.com/campaign-goodgames/images'
+                    }],
+                    force: true
+                },
+                files: [{
+                    expand: true,
+                    src: ['dist/index.html', 'dist/styles/*.css'],
+                    dest: '.'
+                }]
+            }
+        },
+        aws_s3: {
+            options: {
+                accessKeyId: AWS_CONFIG.accessKeyId,
+                secretAccessKey: AWS_CONFIG.secretAccessKey,
+                region: 'cn-north-1',
+                uploadConcurrency: 5,
+                signatureVersion: 'v4'
+            },
+            staging: {
+                options: {
+                    bucket: 'web-statics-staging',
+                    differential: true,
+                    params: {
+                        CacheControl: '31536000'
+                    }
+                },
+                files: [{
+                    expand: true,
+                    cwd: 'dist',
+                    src: ['**'],
+                    dest: 'campaign-goodgames/'
+
+                }]
+            },
+            production: {
+                options: {
+                    bucket: 'web-statics-production',
+                    differential: true,
+                    params: {
+                        CacheControl: '31536000'
+                    }
+                },
+                files: [{
+                    expand: true,
+                    cwd: 'dist',
+                    src: ['**'],
+                    dest: 'campaign-goodgames/'
+                }]
+            }
         }
     });
 
@@ -429,7 +495,9 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('build:production', [
-        'build'
+        'build',
+        'replace',
+        'aws_s3'
         // add aws_s3 upload
     ]);
 };

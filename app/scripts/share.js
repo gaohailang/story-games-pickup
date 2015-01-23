@@ -33,7 +33,7 @@ window.ShareImgUrl = [ShareImgBaseUrl + 'deemo.png', , ShareImgBaseUrl + 'twau.p
         if (!canShared) return;
         buildUTM('wechatfriend');
         campaignTools.toast('正在分享，请稍候...');
-        // trackEvent({category: 'follow2014', action: 'share_home', label: 'wechat_friend'});
+        _pushGaEvent('share_' + GAMENAMEARR[currentGameId], 'wechat_friend');
         campaignTools.runAppShare(shareData.title, shareData.desc, shareData.image, shareData.UTM, 'WECHAT');
     }
 
@@ -41,6 +41,7 @@ window.ShareImgUrl = [ShareImgBaseUrl + 'deemo.png', , ShareImgBaseUrl + 'twau.p
         if (!canShared) return;
         buildUTM('wechattimeline');
         campaignTools.toast('正在分享，请稍候...');
+        _pushGaEvent('share_' + GAMENAMEARR[currentGameId], 'wechat_timeline');
         campaignTools.runAppShare(shareData.title, shareData.desc, shareData.image, shareData.UTM, 'WECHAT_TIMELINE');
     }
 
@@ -48,6 +49,7 @@ window.ShareImgUrl = [ShareImgBaseUrl + 'deemo.png', , ShareImgBaseUrl + 'twau.p
         if (!canShared) return;
         buildUTM('weibo');
         campaignTools.toast('正在分享，请稍候...');
+        _pushGaEvent('share_' + GAMENAMEARR[currentGameId], 'weibo');
         campaignTools.runAppShare(shareData.desc, shareData.desc, shareData.image, shareData.UTM, 'SINA_WEIBO');
     }
 
@@ -55,6 +57,7 @@ window.ShareImgUrl = [ShareImgBaseUrl + 'deemo.png', , ShareImgBaseUrl + 'twau.p
         if (!canShared) return;
         buildUTM('weibo');
         var weiboURL = 'http://service.weibo.com/share/share.php?appkey=1483181040&relateUid=1727978503&url=' + encodeURIComponent(shareData.UTM) + '&title=' + encodeURIComponent(shareData.desc) + '&pic=' + shareData.image;
+        _pushGaEvent('share_' + GAMENAMEARR[currentGameId], 'weibo');
         location.href = weiboURL;
     }
 

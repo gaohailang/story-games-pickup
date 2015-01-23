@@ -479,16 +479,22 @@ var $win = $(window);
         });
         $('.prev').click(function(event) {
             var father = $(this).parent().attr("class").slice(5);
-            $('.' + father + ' .section_' + (--active_page)).hide()
-            action('.' + father + ' .section_' + (active_page - 1), 'in');
+            $('.' + father + ' .section_' + (--active_page)).hide();
+            if (active_page === 1) {
+                backToMenu();
+            } else {
+                action('.' + father + ' .section_' + (active_page - 1), 'in');
+            }
         });
-        $('.Back').click(function(event) {
+
+        function backToMenu() {
             $('.item').css({
                 opacity: 0
             });
             action('.main_menu', 'in');
             $('.game .section').hide()
             $('.game').hide();
-        });
+        }
+        $('.Back').click(backToMenu);
     });
 })();

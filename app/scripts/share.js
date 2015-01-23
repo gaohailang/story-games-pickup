@@ -4,7 +4,7 @@ window.ShareWXText = ['Deemo 这个游戏的剧情太感人了，我的眼泪哗
 window.ShareWeiboText = ['豌豆荚推荐了「Deemo」这款游戏。小女孩和 Deemo 的故事超感人，里面的歌都好好听！', '豌豆荚推荐了「与狼同行」这款游戏。居然白雪公主变成了一名女警探，这个脑洞开得太大了！', '豌豆荚推荐了「小小盗贼」这款游戏。小盗贼好卡哇伊捏，动作都超级搞笑的哈哈！'];
 window.ShareWXTitle = '必玩的三款剧情强大的游戏';
 window.ShareImgBaseUrl = 'http://t.wdjcdn.com/upload/mkt-campaign/goodgames/';
-window.ShareImgUrl = [ShareImgBaseUrl + 'deemo.png', , ShareImgBaseUrl + 'twau.png', ShareImgBaseUrl + 'tt.png'];
+window.ShareImgUrl = [ShareImgBaseUrl + 'deemo.png', ShareImgBaseUrl + 'twau.png', ShareImgBaseUrl + 'tt.png'];
 
 // 分享的逻辑处理
 (function() {

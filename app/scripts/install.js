@@ -33,11 +33,11 @@ function install(id, evt) {
         _pushGaEvent('install_android_wechat', i.appAlias);
         // android
     } else if (campaignTools.inAndroid()) {
-        location.href = 'http://www.wandoujia.com/apps/' + packageName + '/binding';
+        location.href = 'http://www.wandoujia.com/apps/' + i.packageName + '/binding';
         _pushGaEvent('install_android', i.appAlias);
         // other
     } else {
-        location.href = 'http://www.wandoujia.com/apps/' + packageName + '/binding';
+        location.href = 'http://www.wandoujia.com/apps/' + i.packageName + '/binding';
         _pushGaEvent('install_other', i.appAlias);
     }
 }

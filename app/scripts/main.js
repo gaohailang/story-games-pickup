@@ -423,6 +423,7 @@ var $win = $(window);
             $('.main').children().not('.landscape').css({
                 zIndex: 'initial'
             });
+            $('.first .container').show();
             $('.landscape').hide();
             if (!hasSeenCover) {
                 init(function() {
@@ -436,6 +437,7 @@ var $win = $(window);
             $('.main').children().not('.landscape').css({
                 zIndex: -10
             });
+            $('.first .container').hide();
             $('.landscape').show();
         }
 

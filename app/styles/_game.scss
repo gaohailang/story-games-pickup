@@ -28,7 +28,14 @@
     height: 24px;
     width: 24px;
     padding: 16px;
-    i{font-size: 24px;line-height: 24px;}
+    i{
+      display: block;
+      background: url('../images/icons.png') no-repeat -76px -4px;
+      background-size: 629px 34px;
+      width: 18px;
+      height: 28px;
+      margin-left: 5px;
+    }
   }
   .prev{
     position: absolute;
@@ -41,9 +48,15 @@
     width: 24px;
     padding: 16px;
     transform:rotate(180deg);
-    i{font-size: 24px;line-height: 24px;}
-  }
-  .back{
+    i{
+     display: block;
+     background: url('../images/icons.png') no-repeat -76px -4px;
+     background-size: 629px 34px;
+     width: 18px;
+     height: 28px;
+     margin-left: 5px;}
+   }
+   .back{
     position: absolute;
     z-index: 90;
     left: 10px;
@@ -208,56 +221,56 @@
       .pic_1{
         background-image: url(../images/wolf/1.jpg) ;width: 100%;float: left;
         height: 70%;}
-    }
-    &.section_2{
-      .pic_1{background-image: url(../images/wolf/2_1.jpg) ;width: 58%;float: left;}
-      .pic_2{background-image: url(../images/wolf/2_2.jpg) ;width: 40%;float: right;}
-    }
-    &.section_3{
-      .pic_1{background-image: url(../images/wolf/3.jpg) ;width: 100%;}
-    }
-    &.section_4{
-      .pic_1{background-image: url(../images/wolf/4_1.jpg) ;width: 50%;float: left;}
-      .pic_2{background-image: url(../images/wolf/4_2.jpg) ;width: 50%;float: left;}
-    }
-    &.section_5{
-      -webkit-mask: url(../images/mask.png) no-repeat center center;
-      -webkit-mask-position: 60% 30%;
-      -webkit-mask-size:1%;
-      .pic_1{background-image: url(../images/wolf/5.jpg) ;width: 100%;}
-    }
-  }
-}
-.game_3{
-  .section{
-    &.share{background-image: url(../images/thief/bg.jpg) ;background-position: center center;background-repeat: no-repeat;background-size: cover;}
-    .pic{height: 85%;}
-    &.section_1{
-      .pic_1{
-        background-image: url(../images/thief/1.jpg) ;
-        width: 100%;
-        float: left;
-
-        height: 130%;
-        margin-top: -120px;
+      }
+      &.section_2{
+        .pic_1{background-image: url(../images/wolf/2_1.jpg) ;width: 58%;float: left;}
+        .pic_2{background-image: url(../images/wolf/2_2.jpg) ;width: 40%;float: right;}
+      }
+      &.section_3{
+        .pic_1{background-image: url(../images/wolf/3.jpg) ;width: 100%;}
+      }
+      &.section_4{
+        .pic_1{background-image: url(../images/wolf/4_1.jpg) ;width: 50%;float: left;}
+        .pic_2{background-image: url(../images/wolf/4_2.jpg) ;width: 50%;float: left;}
+      }
+      &.section_5{
+        -webkit-mask: url(../images/mask.png) no-repeat center center;
+        -webkit-mask-position: 60% 30%;
+        -webkit-mask-size:1%;
+        .pic_1{background-image: url(../images/wolf/5.jpg) ;width: 100%;}
       }
     }
-    &.section_2{
-      background-color: #38323d;
-      .pic_1{background-image: url(../images/thief/2_1.jpg); width: 50%;float: left;}
-      .pic_2{background-image: url(../images/thief/2_2.jpg); width: 50%;float: right;}
-    }
-    &.section_3{
-      -webkit-mask: url(../images/mask.png) no-repeat center center;
-      -webkit-mask-position: 35% 40%;
-      -webkit-mask-size:1%;
-      .pic{background-image: url(../images/thief/3.jpg) ;width: 100%;}
-    }
-    &.section_4{
-      .pic{background-image: url(../images/thief/4.jpg) ;width: 100%;}
-    }
-    &.section_5{
-      .pic{background-image: url(../images/thief/5.jpg) ;width: 100%;}
+  }
+  .game_3{
+    .section{
+      &.share{background-image: url(../images/thief/bg.jpg) ;background-position: center center;background-repeat: no-repeat;background-size: cover;}
+      .pic{height: 85%;}
+      &.section_1{
+        .pic_1{
+          background-image: url(../images/thief/1.jpg) ;
+          width: 100%;
+          float: left;
+
+          height: 130%;
+          margin-top: -120px;
+        }
+      }
+      &.section_2{
+        background-color: #38323d;
+        .pic_1{background-image: url(../images/thief/2_1.jpg); width: 50%;float: left;}
+        .pic_2{background-image: url(../images/thief/2_2.jpg); width: 50%;float: right;}
+      }
+      &.section_3{
+        -webkit-mask: url(../images/mask.png) no-repeat center center;
+        -webkit-mask-position: 35% 40%;
+        -webkit-mask-size:1%;
+        .pic{background-image: url(../images/thief/3.jpg) ;width: 100%;}
+      }
+      &.section_4{
+        .pic{background-image: url(../images/thief/4.jpg) ;width: 100%;}
+      }
+      &.section_5{
+        .pic{background-image: url(../images/thief/5.jpg) ;width: 100%;}
+      }
     }
   }
-}
